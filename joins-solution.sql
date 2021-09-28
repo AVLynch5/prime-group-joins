@@ -22,15 +22,30 @@ ON "products"."id" = "warehouse_product"."product_id"
 WHERE "products"."description" = 'cheetos';
 
 -- Question 4: Which warehouses have diet pepsi?
-
+SELECT "warehouse"."warehouse"
+FROM "warehouse" 
+JOIN "warehouse_product"
+ON "warehouse"."id" = "warehouse_product"."warehouse_id"
+JOIN "products"
+ON "products"."id" = "warehouse_product"."product_id"
+WHERE "products"."description" = 'diet pepsi';
 
 -- Question 5: Get the number of orders for each customer
 
 
 -- Question 6: How many customers do we have?
-
+SELECT COUNT(*)
+FROM "customers";
 
 -- Question 7: How many products do we carry?
-
+SELECT COUNT(*)
+FROM "products";
 
 -- Question 8: What is the total available on-hand quantity of diet pepsi?
+SELECT SUM("warehouse_product"."on_hand")
+FROM "warehouse" 
+JOIN "warehouse_product"
+ON "warehouse"."id" = "warehouse_product"."warehouse_id"
+JOIN "products"
+ON "products"."id" = "warehouse_product"."product_id"
+WHERE "products"."description" = 'diet pepsi';
